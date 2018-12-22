@@ -1,0 +1,440 @@
+﻿USE [NGANHANG]
+GO
+/****** Object:  StoredProcedure [dbo].[REPORT]    Script Date: 12/29/2016 10:35:50 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- Batch submitted through debugger: SQLQuery14.sql|7|0|C:\Users\ASUS\AppData\Local\Temp\~vs4109.sql
+ALTER PROC [dbo].[REPORT] 
+@SOTK nchar(9),
+@NGAYDAU dateTIME,
+@NGAYCUOI datetime
+AS
+BEGIN
+	DECLARE
+	@magd INT,
+	@ngaygd DATEtime,
+	@loaigd NCHAR(2),
+	@sotien MONEY,
+	@soduhientai MONEY,
+	@tknhan nchar(9),
+	@tk nchar(9)
+
+	CREATE TABLE #TMP1(
+		MAGD INT,
+		NGAYGD DATETIME,
+		LOAIGD NCHAR(2),
+		TK_NHAN NCHAR(9),
+		SOTIEN MONEY,
+		TK_GIAODICH NCHAR(9)
+)
+
+	CREATE TABLE #TMP3(
+	sotk nchar(9),
+	ngaygd datetime,
+	loaigd nchar(2),
+	tknhan nchar(9),
+	sodu_truocgd money,
+	sotien money,
+	sodu_saugd money
+)
+	IF EXISTS(SELECT SODU FROM TAIKHOAN WHERE SOTK=@SOTK)
+	BEGIN
+		SELECT @soduhientai=SODU FROM TAIKHOAN WHERE SOTK=@SOTK
+	END
+	ELSE IF EXISTS(SELECT SODU FROM LINK1.NGANHANG.DBO.TAIKHOAN WHERE SOTK=@SOTK)
+	BEGIN
+		SELECT @soduhientai=SODU FROM LINK1.NGANHANG.DBO.TAIKHOAN WHERE SOTK=@SOTK
+	END
+	
+	INSERT INTO #TMP1
+
+	SELECT MAGD,NGAYGD,LOAIGD,TK_NHAN,SOTIEN,TK_GIAODICH
+			FROM GIAODICH WHERE (GIAODICH.TK_GIAODICH=@SOTK OR GIAODICH.TK_NHAN=@SOTK) AND NGAYGD BETWEEN @NGAYDAU AND @NGAYCUOI
+	UNION
+	SELECT MAGD,NGAYGD,LOAIGD,TK_NHAN,SOTIEN,TK_GIAODICH
+			FROM LINK1.NGANHANG.DBO.GIAODICH WHERE (GIAODICH.TK_GIAODICH=@SOTK OR GIAODICH.TK_NHAN=@SOTK) AND NGAYGD BETWEEN @NGAYDAU AND @NGAYCUOI
+
+	WHILE(SELECT COUNT(*) FROM #TMP1)>0
+	BEGIN
+		SELECT TOP (select count(*)from #tmp1) * INTO #TMP2 FROM #TMP1
+		select @magd=MAGD,@ngaygd=NGAYGD,@loaigd=LOAIGD,@tknhan=TK_NHAN,@sotien=SOTIEN,@tk=TK_GIAODICH FROM #TMP2
+
+		IF(@loaigd='RT')
+		BEGIN
+			SET @soduhientai+=@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai-@sotien)
+		END
+		ELSE IF(@loaigd='GT')
+		BEGIN
+			SET @soduhientai=@soduhientai-@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai+@sotien)
+		END
+		ELSE IF(@tk=@SOTK AND @loaigd='CT')
+		BEGIN
+			SET @soduhientai+=@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai-@sotien)
+		END
+		ELSE IF(@tknhan=@SOTK AND @loaigd='CT')
+		BEGIN
+			SET @soduhientai=@soduhientai-@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai+@sotien)	
+		END
+		DELETE #TMP1 WHERE MAGD=@magd
+		DROP TABLE #TMP2
+	END
+	select sotk,ngaygd,loaigd,tknhan,sodu_truocgd,sotien,sodu_saugd from #TMP3
+	drop
+===================================
+USE [NGANHANG]
+GO
+/****** Object:  StoredProcedure [dbo].[REPORT]    Script Date: 12/29/2016 10:35:50 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- Batch submitted through debugger: SQLQuery14.sql|7|0|C:\Users\ASUS\AppData\Local\Temp\~vs4109.sql
+ALTER PROC [dbo].[REPORT] 
+@SOTK nchar(9),
+@NGAYDAU dateTIME,
+@NGAYCUOI datetime
+AS
+BEGIN
+	DECLARE
+	@magd INT,
+	@ngaygd DATEtime,
+	@loaigd NCHAR(2),
+	@sotien MONEY,
+	@soduhientai MONEY,
+	@tknhan nchar(9),
+	@tk nchar(9)
+
+	CREATE TABLE #TMP1(
+		MAGD INT,
+		NGAYGD DATETIME,
+		LOAIGD NCHAR(2),
+		TK_NHAN NCHAR(9),
+		SOTIEN MONEY,
+		TK_GIAODICH NCHAR(9)
+)
+
+	CREATE TABLE #TMP3(
+	sotk nchar(9),
+	ngaygd datetime,
+	loaigd nchar(2),
+	tknhan nchar(9),
+	sodu_truocgd money,
+	sotien money,
+	sodu_saugd money
+)
+	IF EXISTS(SELECT SODU FROM TAIKHOAN WHERE SOTK=@SOTK)
+	BEGIN
+		SELECT @soduhientai=SODU FROM TAIKHOAN WHERE SOTK=@SOTK
+	END
+	ELSE IF EXISTS(SELECT SODU FROM LINK1.NGANHANG.DBO.TAIKHOAN WHERE SOTK=@SOTK)
+	BEGIN
+		SELECT @soduhientai=SODU FROM LINK1.NGANHANG.DBO.TAIKHOAN WHERE SOTK=@SOTK
+	END
+
+
+	SELECT SODU FROM TAIKHOAN where SOTK=@SOTK 
+	UNION
+	SELECT SODU FROM LINK1.NGANHANG.DBO.TAIKHOAN WHERE SOTK=@SOTK)
+	
+	INSERT INTO #TMP1
+
+	SELECT MAGD,NGAYGD,LOAIGD,TK_NHAN,SOTIEN,TK_GIAODICH
+			FROM GIAODICH WHERE (GIAODICH.TK_GIAODICH=@SOTK OR GIAODICH.TK_NHAN=@SOTK) AND NGAYGD BETWEEN @NGAYDAU AND @NGAYCUOI
+	UNION
+	SELECT MAGD,NGAYGD,LOAIGD,TK_NHAN,SOTIEN,TK_GIAODICH
+			FROM LINK1.NGANHANG.DBO.GIAODICH WHERE (GIAODICH.TK_GIAODICH=@SOTK OR GIAODICH.TK_NHAN=@SOTK) AND NGAYGD BETWEEN @NGAYDAU AND @NGAYCUOI
+
+	WHILE(SELECT COUNT(*) FROM #TMP1)>0
+	BEGIN
+		SELECT TOP (select count(*)from #tmp1) * INTO #TMP2 FROM #TMP1
+		select @magd=MAGD,@ngaygd=NGAYGD,@loaigd=LOAIGD,@tknhan=TK_NHAN,@sotien=SOTIEN,@tk=TK_GIAODICH FROM #TMP2
+
+		IF(@loaigd='RT')
+		BEGIN
+			SET @soduhientai+=@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai-@sotien)
+		END
+		ELSE IF(@loaigd='GT')
+		BEGIN
+			SET @soduhientai=@soduhientai-@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai+@sotien)
+		END
+		ELSE IF(@tk=@SOTK AND @loaigd='CT')
+		BEGIN
+			SET @soduhientai+=@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai-@sotien)
+		END
+		ELSE IF(@tknhan=@SOTK AND @loaigd='CT')
+		BEGIN
+			SET @soduhientai=@soduhientai-@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai+@sotien)	
+		END
+		DELETE #TMP1 WHERE MAGD=@magd
+		DROP TABLE #TMP2
+	END
+	select sotk,ngaygd,loaigd,tknhan,sodu_truocgd,sotien,sodu_saugd from #TMP3
+	drop table #TMP1
+END
+============================================================================
+
+USE [NGANHANG]
+GO
+/****** Object:  StoredProcedure [dbo].[REPORT]    Script Date: 12/29/2016 9:55:47 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- Batch submitted through debugger: SQLQuery14.sql|7|0|C:\Users\ASUS\AppData\Local\Temp\~vs4109.sql
+ALTER PROC [dbo].[REPORT] 
+@SOTK nchar(9),
+@NGAYDAU dateTIME,
+@NGAYCUOI datetime
+AS
+BEGIN
+	DECLARE
+	@magd INT,
+	@ngaygd DATEtime,
+	@loaigd NCHAR(2),
+	@sotien MONEY,
+	@soduhientai MONEY,
+	@tknhan nchar(9),
+	@tk nchar(9)
+
+	CREATE TABLE #TMP1(
+		MAGD INT,
+		NGAYGD DATETIME,
+		TK_GIAODICH NCHAR(9),
+		LOAIGD NCHAR(2),
+		TK_NHAN NCHAR(9),
+		SOTIEN MONEY,
+		SODU MONEY
+)
+
+	CREATE TABLE #TMP3(
+	sotk nchar(9),
+	ngaygd datetime,
+	loaigd nchar(2),
+	tknhan nchar(9),
+	sodu_truocgd money,
+	sotien money,
+	sodu_saugd money
+)
+	SELECT @soduhientai=SODU FROM TAIKHOAN where SOTK=@SOTK
+	
+	INSERT INTO #TMP1
+	SELECT MAGD,NGAYGD,SOTK,LOAIGD,TK_NHAN,SOTIEN,SODU,TK_GIAODICH
+			FROM TAIKHOAN JOIN GIAODICH ON TAIKHOAN.SOTK=GIAODICH.TK_GIAODICH OR TAIKHOAN.SOTK=GIAODICH.TK_NHAN
+			WHERE TAIKHOAN.SOTK=@SOTK AND NGAYGD BETWEEN @NGAYDAU AND @NGAYCUOI
+	WHILE(SELECT COUNT(*) FROM #TMP1)>0
+	BEGIN
+		SELECT TOP (select count(*)from #tmp1) * INTO #TMP2 FROM #TMP1
+		select @magd=MAGD,@ngaygd=NGAYGD,@loaigd=LOAIGD,@sotien=SOTIEN,@tknhan=TK_NHAN,@tk=TK_GIAODICH FROM #TMP2
+
+		IF(@loaigd='RT')
+		BEGIN
+			SET @soduhientai+=@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai-@sotien)
+		END
+		ELSE IF(@loaigd='GT')
+		BEGIN
+			SET @soduhientai=@soduhientai-@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai+@sotien)
+		END
+		ELSE IF(@tk=@SOTK AND @loaigd='CT')
+		BEGIN
+			SET @soduhientai+=@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai-@sotien)
+		END
+		ELSE IF(@tknhan=@SOTK AND @loaigd='CT')
+		BEGIN
+			SET @soduhientai=@soduhientai-@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai+@sotien)	
+		END
+		DELETE #TMP1 WHERE MAGD=@magd
+		DROP TABLE #TMP2
+	END
+	select sotk,ngaygd,loaigd,tknhan,sodu_truocgd,sotien,sodu_saugd from #TMP3
+	drop table #TMP1
+END
+======================================================
+USE [NGANHANG]
+GO
+/****** Object:  StoredProcedure [dbo].[REPORT]    Script Date: 12/29/2016 9:39:00 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[REPORT] @SOTK nchar(9),
+@NGAYDAU dateTIME,
+@NGAYCUOI datetime
+AS
+BEGIN
+	DECLARE
+	@magd INT,
+	@ngaygd DATEtime,
+	@loaigd NCHAR(2),
+	@sotien MONEY,
+	@soduhientai MONEY,
+	@tknhan nchar(9),
+	@tk nchar(9)
+
+	CREATE TABLE #TMP1(
+		MAGD INT,
+		NGAYGD DATETIME,
+		TK_GIAODICH NCHAR(9),
+		LOAIGD NCHAR(2),
+		TK_NHAN NCHAR(9),
+		SOTIEN MONEY,
+		SODU MONEY
+)
+
+	CREATE TABLE #TMP3(
+	sotk nchar(9),
+	ngaygd datetime,
+	loaigd nchar(2),
+	tknhan nchar(9),
+	sodu_truocgd money,
+	sotien money,
+	sodu_saugd money
+)
+	SELECT @soduhientai=SODU FROM TAIKHOAN where SOTK=@SOTK
+	
+	INSERT INTO #TMP1
+	SELECT MAGD,NGAYGD,SOTK,LOAIGD,TK_NHAN,SOTIEN,SODU,TK_GIAODICH
+			FROM TAIKHOAN JOIN GIAODICH ON TAIKHOAN.SOTK=GIAODICH.TK_GIAODICH OR TAIKHOAN.SOTK=GIAODICH.TK_NHAN
+			WHERE TAIKHOAN.SOTK=@SOTK AND NGAYGD BETWEEN @NGAYDAU AND @NGAYCUOI
+	WHILE(SELECT COUNT(*) FROM #TMP1)>0
+	BEGIN
+		SELECT TOP (select count(*)from #tmp1) * INTO #TMP2 FROM #TMP1
+		select @magd=MAGD,@ngaygd=NGAYGD,@loaigd=LOAIGD,@sotien=SOTIEN,@tknhan=TK_NHAN,@tk=TK_GIAODICH FROM #TMP2
+
+		IF(@loaigd='RT')
+		BEGIN
+			SET @soduhientai+=@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai-@sotien)
+		END
+		ELSE IF(@loaigd='GT')
+		BEGIN
+			SET @soduhientai=@soduhientai-@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai+@sotien)
+		END
+		ELSE IF(@tk=@SOTK AND @loaigd='CT')
+		BEGIN
+			SET @soduhientai+=@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai-@sotien)
+		END
+		ELSE IF(@tknhan=@SOTK AND @loaigd='CT')
+		BEGIN
+			SET @soduhientai=@soduhientai-@sotien
+			INSERT INTO #TMP3 VALUES(@tk,@ngaygd,@loaigd,@tknhan,@soduhientai,@sotien,@soduhientai+@sotien)	
+		END
+		DELETE #TMP1 WHERE MAGD=@magd
+		DROP TABLE #TMP2
+	END
+	select sotk,ngaygd,loaigd,tknhan,sodu_truocgd,sotien,sodu_saugd from #TMP3
+	drop table #TMP1
+END
+============================================================
+SE [NGANHANG]
+GO
+/****** Object:  StoredProcedure [dbo].[SPCHUYEN]    Script Date: 12/29/2016 4:13:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROC [dbo].[SPCHUYEN]
+@MANV NCHAR(9),
+@ROLE VARCHAR(50)
+AS
+BEGIN
+	SELECT * INTO #TMP FROM NHANVIEN WHERE MANV=@MANV
+	DELETE FROM NHANVIEN WHERE MANV=@MANV
+	EXEC DBO.Xoa_Login @MANV,@MANV
+	INSERT INTO LINK1.NGANHANG.DBO.NHANVIEN 
+	SELECT * FROM #TMP
+	EXEC LINK1.NGANHANG.DBO.SP_TAOLOGIN @MANV,'123',@MANV,@ROLE
+END
+============================================================
+select *
+FROM TAIKHOAN JOIN GIAODICH ON TAIKHOAN.SOTK=GIAODICH.TK_GIAODICH OR TAIKHOAN.SOTK=GIAODICH.TK_NHAN
+			WHERE TAIKHOAN.SOTK='128575   '
+union
+select *
+FROM LINK1.NGANHANG.DBO.TAIKHOAN JOIN LINK1.NGANHANG.DBO.GIAODICH ON TAIKHOAN.SOTK=GIAODICH.TK_GIAODICH OR TAIKHOAN.SOTK=GIAODICH.TK_NHAN
+			WHERE TAIKHOAN.SOTK='128575   '
+==========================================
+
+USE [NGANHANG]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_TAOLOGIN]    Script Date: 12/26/2016 4:02:13 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROC [dbo].[SP_TAOLOGIN]
+  @LGNAME VARCHAR(50),
+  @PASS VARCHAR(50),
+  @USERNAME VARCHAR(50),
+  @ROLE VARCHAR(50)
+AS
+  DECLARE @RET INT
+  EXEC @RET= SP_ADDLOGIN @LGNAME, @PASS,'NGANHANG'
+  IF (@RET =1)  -- LOGIN NAME BI TRUNG
+     RETURN 1
+ 
+  EXEC @RET= SP_GRANTDBACCESS @LGNAME, @USERNAME
+  IF (@RET =1)  -- USER  NAME BI TRUNG
+  BEGIN
+       EXEC SP_DROPLOGIN @LGNAME
+       RETURN 2
+  END
+  EXEC sp_addrolemember @ROLE, @USERNAME
+
+RETURN 0  -- THANH CONG
+=========================================
+USE [NGANHANG]
+GO
+/****** Object:  StoredProcedure [dbo].[GETMANV]    Script Date: 12/26/2016 10:22:43 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[GETMANV] @MANV NCHAR(9) OUTPUT
+AS
+BEGIN
+	SET @MANV='NV0001'
+	DECLARE @DEM INT
+	SET @DEM=1
+	WHILE (EXISTS(SELECT MANV FROM NHANVIEN WHERE MANV=@MANV) OR EXISTS(SELECT MANV FROM LINK1.NGANHANG.DBO.NHANVIEN WHERE MANV=@MANV)) 
+	BEGIN
+		SET @DEM=@DEM+1
+		SET @MANV='NV'+REPLICATE('0',4-LEN(CAST(@DEM AS nchar)))+CAST(@DEM as nchar)
+	END
+	
+END
+================================
+USE [NGANHANG]
+GO
+/****** Object:  StoredProcedure [dbo].[TAOTK]    Script Date: 12/26/2016 12:33:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[TAOTK] @CMND NCHAR(9)
+AS
+BEGIN
+	DECLARE @MAX NCHAR(9)
+	SET @MAX=(SELECT MAX(SOTK) FROM TAIKHOAN)
+	IF(@MAX<(SELECT MAX(SOTK) FROM LINK1.NGANHANG.DBO.TAIKHOAN))
+	BEGIN
+		SET	@MAX=(SELECT MAX(MAGD) FROM LINK1.NGANHANG.DBO.GIAODICH)
+	END
+	INSERT INTO TAIKHOAN(SOTK,CMND,SODU) VALUES ((@MAX+1),@CMND,50000)
+	
+END
