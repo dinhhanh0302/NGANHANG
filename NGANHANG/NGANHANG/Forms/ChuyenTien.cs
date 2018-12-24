@@ -38,7 +38,7 @@ namespace NGANHANG.Forms
             {
                 cbbChiNhanh.Enabled = false;
             }
-            tbCMND.Enabled = gioiTinhNu.Enabled = gioiTinhNam.Enabled = tbHo.Enabled = tbdateGD.Enabled = tbmaNVGD.Enabled = tbTen.Enabled = tbSoTK.Enabled = tbSoDu.Enabled = tbHo.Enabled = tbTen.Enabled = tbChiNhanhTaoKH.Enabled = tbChiNhanhTaoTK.Enabled = rtbDiaChi.Enabled = tbSDT.Enabled = false;
+            tbCMND.Enabled = gioiTinhNu.Enabled = gioiTinhNam.Enabled = tbHo.Enabled = tbdateGD.Enabled = tbmaNVGD.Enabled = tbTen.Enabled = tbSoDu.Enabled = tbHo.Enabled = tbTen.Enabled = tbChiNhanhTaoKH.Enabled = tbChiNhanhTaoTK.Enabled = rtbDiaChi.Enabled = tbSDT.Enabled = false;
             
 
 
@@ -107,19 +107,31 @@ namespace NGANHANG.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (tbSoTKNhan.Text == "")
+            if (tbSoTK.Text == "")
             {
-                MessageBox.Show("Bạn chưa nhập số tài khoản", "", MessageBoxButtons.OK);
+                MessageBox.Show("Bạn chưa nhập số tài khoản chuyển", "", MessageBoxButtons.OK);
+                tbSoTK.Focus();
+                return;
+            }
+            else if (!kiemTraSo(tbSoTK.Text.Trim()))
+            {
+                MessageBox.Show("Số tài khoản gửi nhập vào số tài khoản không hợp lệ", "", MessageBoxButtons.OK);
+                tbSoTK.Focus();
+                return;
+            }
+            else if (tbSoTKNhan.Text == "")
+            {
+                MessageBox.Show("Bạn chưa nhập số tài khoản nhận", "", MessageBoxButtons.OK);
                 tbSoTKNhan.Focus();
                 return;
             }
             else if (!kiemTraSo(tbSoTKNhan.Text.Trim()))
             {
-                MessageBox.Show("Giá trị nhập vào số tài khoản không hợp lệ", "", MessageBoxButtons.OK);
+                MessageBox.Show("Số tài khoản nhận nhập vào số tài khoản không hợp lệ", "", MessageBoxButtons.OK);
                 tbSoTKNhan.Focus();
                 return;
             }
-            else if (tbSoTKNhan.Text.Equals(tbSoTK.Text))
+            else if (tbSoTKNhan.Text.Trim().Equals(tbSoTK.Text.Trim()))
             {
                 MessageBox.Show("Số tài khoản nhận phải khác số tài khoản gửi", "", MessageBoxButtons.OK);
                 tbSoTKNhan.Focus();
@@ -153,17 +165,17 @@ namespace NGANHANG.Forms
             else
             {
                 Double soTienChuyen = Double.Parse(tbSoTienChuyen.Text);
-                Double soDu = Double.Parse(tbSoDu.Text);
-                Double soTienCon = soDu - soTienChuyen;
-                if (soTienCon < 100000)
-                {
-                    MessageBox.Show("Bạn phải giữ lại tối thiểu 100000 VND trong tài khoản", "", MessageBoxButtons.OK);
-                    tbSoTienChuyen.Focus();
-                    return;
-                }
+                //Double soDu = Double.Parse(tbSoDu.Text);
+                //Double soTienCon = soDu - soTienChuyen;
+                //if (soTienCon < 100000)
+                //{
+                //    MessageBox.Show("Bạn phải giữ lại tối thiểu 100000 VND trong tài khoản", "", MessageBoxButtons.OK);
+                //    tbSoTienChuyen.Focus();
+                //    return;
+                //}
 
                 string date = DateTime.Now.ToString("yyyy-MM-dd h:mm:ss");
-                int a = KT_TaiKhoanKH.GD_ChuyenTienTaiKhoan(tbSoTK.Text, tbSoTKNhan.Text, date, soTienChuyen, Program.username);
+                int a = KT_TaiKhoanKH.GD_ChuyenTienTaiKhoan(tbCMND.Text.Trim(),tbSoTK.Text, tbSoTKNhan.Text, date, soTienChuyen, Program.username);
 
                 if (a == 1)
                 {
@@ -181,6 +193,15 @@ namespace NGANHANG.Forms
                     tbSoTienChuyen.ResetText();
                     tbSoTKNhan.ResetText();
                 }
+                else if (a == 2)
+                {
+                    MessageBox.Show("Không tìm được số tài khoản gửi");
+                }
+                else if(a == 3)
+                {
+                    MessageBox.Show("Bạn phải để tối thiểu số dư trong tài khoản lớn hơn 100000 VND");
+                }
+
                 else
                 {
                     MessageBox.Show("Giao dịch thất bại! Vui lòng kiểm tra lại thông tin");

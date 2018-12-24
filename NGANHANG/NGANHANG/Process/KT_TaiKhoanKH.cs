@@ -55,9 +55,9 @@ namespace NGANHANG.Process
 
         }
 
-        public static int CapNhatSoDuTaiKhoan( string sotk,  string loaigd, string ngaygd, Double sotien, string manv)
+        public static int CapNhatSoDuTaiKhoan(string cmnd, string sotk,  string loaigd, string ngaygd, Double sotien, string manv)
         {
-
+            
             SqlConnection conn = new SqlConnection(Program.connectionstring);
 
             SqlCommand command = new SqlCommand("SP_CapNhatSoDuTaiKhoan", conn);
@@ -70,6 +70,7 @@ namespace NGANHANG.Process
             command.Parameters.Add(new SqlParameter("@NGAYGD", SqlDbType.NChar)).Value = ngaygd;
             command.Parameters.Add(new SqlParameter("@SOTIEN", SqlDbType.Money)).Value = sotien;
             command.Parameters.Add(new SqlParameter("@MANV", SqlDbType.NChar)).Value = manv;
+            command.Parameters.Add(new SqlParameter("@CMND", SqlDbType.NChar)).Value = cmnd;
 
             var returnParameter = command.Parameters.Add("@result", SqlDbType.Int);
             returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -121,7 +122,7 @@ namespace NGANHANG.Process
 
         }
 
-        public static int GD_ChuyenTienTaiKhoan(string sotkgui, string sotknhan, string ngaygd, Double sotienchuyen, string manv)
+        public static int GD_ChuyenTienTaiKhoan(string cmnd,string sotkgui, string sotknhan, string ngaygd, Double sotienchuyen, string manv)
         {
 
             SqlConnection conn = new SqlConnection(Program.connectionstring);
@@ -135,6 +136,7 @@ namespace NGANHANG.Process
             command.Parameters.Add(new SqlParameter("@NGAYGD", SqlDbType.NChar)).Value = ngaygd;
             command.Parameters.Add(new SqlParameter("@SOTIENCHUYEN", SqlDbType.Money)).Value = sotienchuyen;
             command.Parameters.Add(new SqlParameter("@MANV", SqlDbType.NChar)).Value = manv;
+            command.Parameters.Add(new SqlParameter("@CMND", SqlDbType.NChar)).Value = cmnd;
 
             var returnParameter = command.Parameters.Add("@result", SqlDbType.Int);
             returnParameter.Direction = ParameterDirection.ReturnValue;

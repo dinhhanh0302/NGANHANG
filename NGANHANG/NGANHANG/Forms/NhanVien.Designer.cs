@@ -34,11 +34,11 @@
             System.Windows.Forms.Label tENLabel;
             System.Windows.Forms.Label dIACHILabel;
             System.Windows.Forms.Label sODTLabel;
-            System.Windows.Forms.Label trangThaiXoaLabel;
             System.Windows.Forms.Label mACNLabel;
             System.Windows.Forms.Label pHAILabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NhanVien));
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            System.Windows.Forms.Label trangThaiXoaLabel;
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -77,21 +77,21 @@
             this.gioiTinhNu = new System.Windows.Forms.CheckBox();
             this.cbTaoTaiKhoan = new System.Windows.Forms.CheckBox();
             this.maChiNhanh = new System.Windows.Forms.TextBox();
-            this.trangThaiXoaNV = new System.Windows.Forms.ComboBox();
             this.SDTNhanVien = new System.Windows.Forms.TextBox();
             this.diaChiNV = new System.Windows.Forms.RichTextBox();
             this.tenNhanVien = new System.Windows.Forms.TextBox();
             this.hoNhanVien = new System.Windows.Forms.TextBox();
             this.maNhanVien = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.trangThaiXoaNV = new System.Windows.Forms.ComboBox();
             mANVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
             dIACHILabel = new System.Windows.Forms.Label();
             sODTLabel = new System.Windows.Forms.Label();
-            trangThaiXoaLabel = new System.Windows.Forms.Label();
             mACNLabel = new System.Windows.Forms.Label();
             pHAILabel = new System.Windows.Forms.Label();
+            trangThaiXoaLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cN_NGANHANG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiNhanhBindingSource)).BeginInit();
@@ -147,15 +147,6 @@
             sODTLabel.Size = new System.Drawing.Size(73, 13);
             sODTLabel.TabIndex = 10;
             sODTLabel.Text = "Số điện thoại:";
-            // 
-            // trangThaiXoaLabel
-            // 
-            trangThaiXoaLabel.AutoSize = true;
-            trangThaiXoaLabel.Location = new System.Drawing.Point(593, 78);
-            trangThaiXoaLabel.Name = "trangThaiXoaLabel";
-            trangThaiXoaLabel.Size = new System.Drawing.Size(81, 13);
-            trangThaiXoaLabel.TabIndex = 14;
-            trangThaiXoaLabel.Text = "Trạng thái xóa:";
             // 
             // mACNLabel
             // 
@@ -252,7 +243,7 @@
             // 
             // btnPhucHoi
             // 
-            this.btnPhucHoi.Caption = "Phục hồi";
+            this.btnPhucHoi.Caption = "Reset";
             this.btnPhucHoi.Id = 4;
             this.btnPhucHoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.Image")));
             this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
@@ -554,15 +545,6 @@
             this.maChiNhanh.Size = new System.Drawing.Size(135, 21);
             this.maChiNhanh.TabIndex = 16;
             // 
-            // trangThaiXoaNV
-            // 
-            this.trangThaiXoaNV.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.nhanVienBindingSource, "TrangThaiXoa", true));
-            this.trangThaiXoaNV.FormattingEnabled = true;
-            this.trangThaiXoaNV.Location = new System.Drawing.Point(682, 75);
-            this.trangThaiXoaNV.Name = "trangThaiXoaNV";
-            this.trangThaiXoaNV.Size = new System.Drawing.Size(135, 21);
-            this.trangThaiXoaNV.TabIndex = 15;
-            // 
             // SDTNhanVien
             // 
             this.SDTNhanVien.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.nhanVienBindingSource, "SODT", true));
@@ -613,6 +595,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1150, 37);
             this.panel1.TabIndex = 4;
+            // 
+            // trangThaiXoaNV
+            // 
+            this.trangThaiXoaNV.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.nhanVienBindingSource, "TrangThaiXoa", true));
+            this.trangThaiXoaNV.FormattingEnabled = true;
+            this.trangThaiXoaNV.Location = new System.Drawing.Point(682, 75);
+            this.trangThaiXoaNV.Name = "trangThaiXoaNV";
+            this.trangThaiXoaNV.Size = new System.Drawing.Size(135, 21);
+            this.trangThaiXoaNV.TabIndex = 15;
+            this.trangThaiXoaNV.Visible = false;
+            // 
+            // trangThaiXoaLabel
+            // 
+            trangThaiXoaLabel.AutoSize = true;
+            trangThaiXoaLabel.Location = new System.Drawing.Point(593, 78);
+            trangThaiXoaLabel.Name = "trangThaiXoaLabel";
+            trangThaiXoaLabel.Size = new System.Drawing.Size(81, 13);
+            trangThaiXoaLabel.TabIndex = 14;
+            trangThaiXoaLabel.Text = "Trạng thái xóa:";
+            trangThaiXoaLabel.Visible = false;
             // 
             // NhanVien
             // 
@@ -681,7 +683,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.TextBox maChiNhanh;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox trangThaiXoaNV;
         private System.Windows.Forms.CheckBox gioiTinhNu;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private System.Windows.Forms.CheckBox cbTaoTaiKhoan;
@@ -693,5 +694,6 @@
         private System.Windows.Forms.Label lbTaiKhoan;
         private System.Windows.Forms.GroupBox gbTaoTaiKhoan;
         private System.Windows.Forms.CheckBox gioiTinhNam;
+        private System.Windows.Forms.ComboBox trangThaiXoaNV;
     }
 }

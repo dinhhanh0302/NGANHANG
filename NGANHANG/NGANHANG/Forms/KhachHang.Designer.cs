@@ -39,7 +39,7 @@
             System.Windows.Forms.Label mACNLabel;
             System.Windows.Forms.Label label2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KhachHang));
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -268,7 +268,7 @@
             // 
             // btnPhucHoi
             // 
-            this.btnPhucHoi.Caption = "Phục hồi";
+            this.btnPhucHoi.Caption = "Reset";
             this.btnPhucHoi.Id = 4;
             this.btnPhucHoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.Image")));
             this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
@@ -416,9 +416,9 @@
             // 
             this.khachHangGridControl.DataSource = this.khachHangBindingSource;
             this.khachHangGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.RelationName = "Level1";
             this.khachHangGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.khachHangGridControl.Location = new System.Drawing.Point(0, 104);
             this.khachHangGridControl.MainView = this.gridView2;
             this.khachHangGridControl.MenuManager = this.barManager1;

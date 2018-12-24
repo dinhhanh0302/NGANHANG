@@ -49,6 +49,8 @@
             this.sP_DS_TAIKHOANGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gbThongTinTK = new System.Windows.Forms.GroupBox();
+            this.gioiTinhNu = new System.Windows.Forms.CheckBox();
+            this.gioiTinhNam = new System.Windows.Forms.CheckBox();
             this.tbChiNhanhTaoTK = new System.Windows.Forms.TextBox();
             this.tbSoDu = new System.Windows.Forms.TextBox();
             this.tbSoTK = new System.Windows.Forms.TextBox();
@@ -69,8 +71,6 @@
             this.tbdateGD = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.gioiTinhNam = new System.Windows.Forms.CheckBox();
-            this.gioiTinhNu = new System.Windows.Forms.CheckBox();
             cMNDLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -129,7 +129,7 @@
             // sODTLabel
             // 
             sODTLabel.AutoSize = true;
-            sODTLabel.Location = new System.Drawing.Point(4, 210);
+            sODTLabel.Location = new System.Drawing.Point(279, 40);
             sODTLabel.Name = "sODTLabel";
             sODTLabel.Size = new System.Drawing.Size(73, 13);
             sODTLabel.TabIndex = 8;
@@ -156,11 +156,11 @@
             // sOTKLabel
             // 
             sOTKLabel.AutoSize = true;
-            sOTKLabel.Location = new System.Drawing.Point(282, 40);
+            sOTKLabel.Location = new System.Drawing.Point(6, 40);
             sOTKLabel.Name = "sOTKLabel";
-            sOTKLabel.Size = new System.Drawing.Size(70, 13);
+            sOTKLabel.Size = new System.Drawing.Size(108, 13);
             sOTKLabel.TabIndex = 14;
-            sOTKLabel.Text = "Số tài khoản:";
+            sOTKLabel.Text = "Số tài khoản chuyển:";
             // 
             // sODULabel
             // 
@@ -265,8 +265,6 @@
             this.gbThongTinTK.Controls.Add(this.tbChiNhanhTaoTK);
             this.gbThongTinTK.Controls.Add(sODULabel);
             this.gbThongTinTK.Controls.Add(this.tbSoDu);
-            this.gbThongTinTK.Controls.Add(sOTKLabel);
-            this.gbThongTinTK.Controls.Add(this.tbSoTK);
             this.gbThongTinTK.Controls.Add(mACN_TAOKHLabel);
             this.gbThongTinTK.Controls.Add(this.tbChiNhanhTaoKH);
             this.gbThongTinTK.Controls.Add(pHAILabel);
@@ -288,6 +286,28 @@
             this.gbThongTinTK.TabStop = false;
             this.gbThongTinTK.Text = "Thông tin tài khoản";
             // 
+            // gioiTinhNu
+            // 
+            this.gioiTinhNu.AutoSize = true;
+            this.gioiTinhNu.Location = new System.Drawing.Point(170, 147);
+            this.gioiTinhNu.Name = "gioiTinhNu";
+            this.gioiTinhNu.Size = new System.Drawing.Size(40, 17);
+            this.gioiTinhNu.TabIndex = 21;
+            this.gioiTinhNu.Text = "Nữ";
+            this.gioiTinhNu.UseVisualStyleBackColor = true;
+            this.gioiTinhNu.CheckedChanged += new System.EventHandler(this.gioiTinhNu_CheckedChanged);
+            // 
+            // gioiTinhNam
+            // 
+            this.gioiTinhNam.AutoSize = true;
+            this.gioiTinhNam.Location = new System.Drawing.Point(103, 147);
+            this.gioiTinhNam.Name = "gioiTinhNam";
+            this.gioiTinhNam.Size = new System.Drawing.Size(47, 17);
+            this.gioiTinhNam.TabIndex = 20;
+            this.gioiTinhNam.Text = "Nam";
+            this.gioiTinhNam.UseVisualStyleBackColor = true;
+            this.gioiTinhNam.CheckedChanged += new System.EventHandler(this.gioiTinhNam_CheckedChanged);
+            // 
             // tbChiNhanhTaoTK
             // 
             this.tbChiNhanhTaoTK.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_DS_TAIKHOANBindingSource, "MACN_TAOTK", true));
@@ -307,9 +327,9 @@
             // tbSoTK
             // 
             this.tbSoTK.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_DS_TAIKHOANBindingSource, "SOTK", true));
-            this.tbSoTK.Location = new System.Drawing.Point(358, 37);
+            this.tbSoTK.Location = new System.Drawing.Point(120, 37);
             this.tbSoTK.Name = "tbSoTK";
-            this.tbSoTK.Size = new System.Drawing.Size(156, 21);
+            this.tbSoTK.Size = new System.Drawing.Size(128, 21);
             this.tbSoTK.TabIndex = 15;
             // 
             // tbChiNhanhTaoKH
@@ -323,7 +343,7 @@
             // tbSDT
             // 
             this.tbSDT.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_DS_TAIKHOANBindingSource, "SODT", true));
-            this.tbSDT.Location = new System.Drawing.Point(91, 207);
+            this.tbSDT.Location = new System.Drawing.Point(358, 37);
             this.tbSDT.Name = "tbSDT";
             this.tbSDT.Size = new System.Drawing.Size(156, 21);
             this.tbSDT.TabIndex = 9;
@@ -364,7 +384,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 40);
+            this.label3.Location = new System.Drawing.Point(17, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 25;
@@ -372,7 +392,7 @@
             // 
             // tbSoTKNhan
             // 
-            this.tbSoTKNhan.Location = new System.Drawing.Point(120, 37);
+            this.tbSoTKNhan.Location = new System.Drawing.Point(120, 91);
             this.tbSoTKNhan.Name = "tbSoTKNhan";
             this.tbSoTKNhan.Size = new System.Drawing.Size(128, 21);
             this.tbSoTKNhan.TabIndex = 24;
@@ -400,7 +420,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 94);
+            this.label2.Location = new System.Drawing.Point(32, 148);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 21;
@@ -408,7 +428,7 @@
             // 
             // tbSoTienChuyen
             // 
-            this.tbSoTienChuyen.Location = new System.Drawing.Point(121, 91);
+            this.tbSoTienChuyen.Location = new System.Drawing.Point(120, 145);
             this.tbSoTienChuyen.Name = "tbSoTienChuyen";
             this.tbSoTienChuyen.Size = new System.Drawing.Size(128, 21);
             this.tbSoTienChuyen.TabIndex = 20;
@@ -421,7 +441,9 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.tbSoTKNhan);
+            this.groupBox2.Controls.Add(sOTKLabel);
             this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.tbSoTK);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.tbSoTienChuyen);
             this.groupBox2.Controls.Add(this.button1);
@@ -464,28 +486,6 @@
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 26;
             this.label4.Text = "Ngày GD:";
-            // 
-            // gioiTinhNam
-            // 
-            this.gioiTinhNam.AutoSize = true;
-            this.gioiTinhNam.Location = new System.Drawing.Point(103, 147);
-            this.gioiTinhNam.Name = "gioiTinhNam";
-            this.gioiTinhNam.Size = new System.Drawing.Size(47, 17);
-            this.gioiTinhNam.TabIndex = 20;
-            this.gioiTinhNam.Text = "Nam";
-            this.gioiTinhNam.UseVisualStyleBackColor = true;
-            this.gioiTinhNam.CheckedChanged += new System.EventHandler(this.gioiTinhNam_CheckedChanged);
-            // 
-            // gioiTinhNu
-            // 
-            this.gioiTinhNu.AutoSize = true;
-            this.gioiTinhNu.Location = new System.Drawing.Point(170, 147);
-            this.gioiTinhNu.Name = "gioiTinhNu";
-            this.gioiTinhNu.Size = new System.Drawing.Size(40, 17);
-            this.gioiTinhNu.TabIndex = 21;
-            this.gioiTinhNu.Text = "Nữ";
-            this.gioiTinhNu.UseVisualStyleBackColor = true;
-            this.gioiTinhNu.CheckedChanged += new System.EventHandler(this.gioiTinhNu_CheckedChanged);
             // 
             // ChuyenTien
             // 

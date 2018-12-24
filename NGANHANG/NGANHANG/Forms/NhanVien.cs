@@ -44,7 +44,7 @@ namespace NGANHANG.Forms
             catch (System.Exception ex)
             {
                 MessageBox.Show("Lỗi không truy vấn được vào form");
-                maChiNhanh.Enabled = diaChiNV.Enabled = hoNhanVien.Enabled = maNhanVien.Enabled = SDTNhanVien.Enabled = tenNhanVien.Enabled = gioiTinhNam.Enabled = gioiTinhNu.Enabled = trangThaiXoaNV.Enabled = false;
+                maChiNhanh.Enabled = diaChiNV.Enabled = hoNhanVien.Enabled = maNhanVien.Enabled = SDTNhanVien.Enabled = tenNhanVien.Enabled = gioiTinhNam.Enabled = gioiTinhNu.Enabled = false;
                 btnSua.Enabled = btnXoa.Enabled = btnThem.Enabled = btnPhucHoi.Enabled = btnLuu.Enabled = false;
 
             }
@@ -52,7 +52,7 @@ namespace NGANHANG.Forms
             cbChiNhanh.DataSource = Program.ChiNhanhbds;
             cbChiNhanh.DisplayMember = "TENCN";
             cbChiNhanh.ValueMember = "TENSERVER";
-            maChiNhanh.Enabled = diaChiNV.Enabled = hoNhanVien.Enabled = maNhanVien.Enabled = SDTNhanVien.Enabled = tenNhanVien.Enabled = gioiTinhNam.Enabled = gioiTinhNu.Enabled = trangThaiXoaNV.Enabled = false;
+            maChiNhanh.Enabled = diaChiNV.Enabled = hoNhanVien.Enabled = maNhanVien.Enabled = SDTNhanVien.Enabled = tenNhanVien.Enabled = gioiTinhNam.Enabled = gioiTinhNu.Enabled = false;
             cbTaoTaiKhoan.Visible = false;
             gbTaoTaiKhoan.Visible = false;
             if (Program.mGroup.Trim() == "CHINHANH")
@@ -78,7 +78,7 @@ namespace NGANHANG.Forms
         {
             gioiTinhNam.Checked = true;
             btnSua.Enabled = btnXoa.Enabled = false;
-            diaChiNV.Enabled = hoNhanVien.Enabled = maNhanVien.Enabled = SDTNhanVien.Enabled = tenNhanVien.Enabled = gioiTinhNu.Enabled = gioiTinhNam.Enabled = trangThaiXoaNV.Enabled = true;
+            diaChiNV.Enabled = hoNhanVien.Enabled = maNhanVien.Enabled = SDTNhanVien.Enabled = tenNhanVien.Enabled = gioiTinhNu.Enabled = gioiTinhNam.Enabled = true;
 
             gridView1.AddNewRow();
             maChiNhanh.Text = ((DataRowView)nhanVienBindingSource[0])["MACN"].ToString();

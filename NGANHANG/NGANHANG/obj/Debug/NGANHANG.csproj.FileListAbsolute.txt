@@ -109,7 +109,6 @@ D:\DETAI_PT\NganHang\NGANHANG\bin\Debug\DevExpress.Mvvm.v17.1.dll
 D:\DETAI_PT\NganHang\NGANHANG\bin\Debug\DevExpress.Mvvm.v17.1.xml
 D:\DETAI_PT\NganHang\NGANHANG\obj\Debug\NGANHANG.Forms.ChuyenTien.resources
 D:\DETAI_PT\NganHang\NGANHANG\obj\Debug\NGANHANG.Forms.MoTaiKhoanKH.resources
-D:\DETAI_PT\NganHang\NGANHANG\obj\Debug\NGANHANG.Forms.DS_GiaoDich.resources
 D:\DETAI_PT\NganHang\NGANHANG\obj\Debug\NGANHANG.Forms.GiaoDich.resources
 D:\DETAI_PT\NganHang\NGANHANG\bin\Debug\DevExpress.Charts.v17.1.Core.dll
 D:\DETAI_PT\NganHang\NGANHANG\bin\Debug\DevExpress.PivotGrid.v17.1.Core.dll

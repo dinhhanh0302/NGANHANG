@@ -40,7 +40,6 @@
             System.Windows.Forms.Label sODULabel;
             System.Windows.Forms.Label mACN_TAOTKLabel;
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDSGiaoDich = new System.Windows.Forms.Button();
             this.cbbChiNhanh = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cN_NGANHANG = new NGANHANG.CN_NGANHANG();
@@ -50,6 +49,8 @@
             this.sP_DS_TAIKHOANGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gbThongTinTK = new System.Windows.Forms.GroupBox();
+            this.gioiTinhNu = new System.Windows.Forms.CheckBox();
+            this.gioiTinhNam = new System.Windows.Forms.CheckBox();
             this.tbChiNhanhTaoTK = new System.Windows.Forms.TextBox();
             this.tbSoDu = new System.Windows.Forms.TextBox();
             this.tbSoTK = new System.Windows.Forms.TextBox();
@@ -73,8 +74,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.gioiTinhNam = new System.Windows.Forms.CheckBox();
-            this.gioiTinhNu = new System.Windows.Forms.CheckBox();
             cMNDLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -189,7 +188,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnDSGiaoDich);
             this.panel1.Controls.Add(this.cbbChiNhanh);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -197,16 +195,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1367, 56);
             this.panel1.TabIndex = 0;
-            // 
-            // btnDSGiaoDich
-            // 
-            this.btnDSGiaoDich.Location = new System.Drawing.Point(503, 17);
-            this.btnDSGiaoDich.Name = "btnDSGiaoDich";
-            this.btnDSGiaoDich.Size = new System.Drawing.Size(75, 23);
-            this.btnDSGiaoDich.TabIndex = 2;
-            this.btnDSGiaoDich.Text = "DS Giao dịch";
-            this.btnDSGiaoDich.UseVisualStyleBackColor = true;
-            this.btnDSGiaoDich.Click += new System.EventHandler(this.btnDSGiaoDich_Click);
             // 
             // cbbChiNhanh
             // 
@@ -305,6 +293,28 @@
             this.gbThongTinTK.TabIndex = 3;
             this.gbThongTinTK.TabStop = false;
             this.gbThongTinTK.Text = "Thông tin tài khoản";
+            // 
+            // gioiTinhNu
+            // 
+            this.gioiTinhNu.AutoSize = true;
+            this.gioiTinhNu.Location = new System.Drawing.Point(182, 137);
+            this.gioiTinhNu.Name = "gioiTinhNu";
+            this.gioiTinhNu.Size = new System.Drawing.Size(40, 17);
+            this.gioiTinhNu.TabIndex = 21;
+            this.gioiTinhNu.Text = "Nữ";
+            this.gioiTinhNu.UseVisualStyleBackColor = true;
+            this.gioiTinhNu.CheckedChanged += new System.EventHandler(this.gioiTinhNu_CheckedChanged);
+            // 
+            // gioiTinhNam
+            // 
+            this.gioiTinhNam.AutoSize = true;
+            this.gioiTinhNam.Location = new System.Drawing.Point(112, 137);
+            this.gioiTinhNam.Name = "gioiTinhNam";
+            this.gioiTinhNam.Size = new System.Drawing.Size(47, 17);
+            this.gioiTinhNam.TabIndex = 20;
+            this.gioiTinhNam.Text = "Nam";
+            this.gioiTinhNam.UseVisualStyleBackColor = true;
+            this.gioiTinhNam.CheckedChanged += new System.EventHandler(this.gioiTinhNam_CheckedChanged);
             // 
             // tbChiNhanhTaoTK
             // 
@@ -514,28 +524,6 @@
             this.label3.TabIndex = 25;
             this.label3.Text = "Số tài khoản GD:";
             // 
-            // gioiTinhNam
-            // 
-            this.gioiTinhNam.AutoSize = true;
-            this.gioiTinhNam.Location = new System.Drawing.Point(112, 137);
-            this.gioiTinhNam.Name = "gioiTinhNam";
-            this.gioiTinhNam.Size = new System.Drawing.Size(47, 17);
-            this.gioiTinhNam.TabIndex = 20;
-            this.gioiTinhNam.Text = "Nam";
-            this.gioiTinhNam.UseVisualStyleBackColor = true;
-            this.gioiTinhNam.CheckedChanged += new System.EventHandler(this.gioiTinhNam_CheckedChanged);
-            // 
-            // gioiTinhNu
-            // 
-            this.gioiTinhNu.AutoSize = true;
-            this.gioiTinhNu.Location = new System.Drawing.Point(182, 137);
-            this.gioiTinhNu.Name = "gioiTinhNu";
-            this.gioiTinhNu.Size = new System.Drawing.Size(40, 17);
-            this.gioiTinhNu.TabIndex = 21;
-            this.gioiTinhNu.Text = "Nữ";
-            this.gioiTinhNu.UseVisualStyleBackColor = true;
-            this.gioiTinhNu.CheckedChanged += new System.EventHandler(this.gioiTinhNu_CheckedChanged);
-            // 
             // GiaoDich
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,7 +579,6 @@
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnGiaoDich;
         private System.Windows.Forms.TextBox tbSoTienGD;
-        private System.Windows.Forms.Button btnDSGiaoDich;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbbLoaiGD;
         private System.Windows.Forms.Label label5;

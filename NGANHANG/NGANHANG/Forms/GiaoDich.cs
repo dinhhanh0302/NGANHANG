@@ -42,14 +42,11 @@ namespace NGANHANG.Forms
             {
                 try
                 {
-                    btnDSGiaoDich.Enabled = true;
                     this.sP_DS_TAIKHOANTableAdapter.Connection.ConnectionString = Program.connectionstring;
                     this.sP_DS_TAIKHOANTableAdapter.Fill(this.cN_NGANHANG.SP_DS_TAIKHOAN);
                 }
                 catch(System.Data.SqlClient.SqlException ex)
                 {
-                    btnDSGiaoDich.Enabled = false;
-                    return;
                 }
 
             }
@@ -59,14 +56,12 @@ namespace NGANHANG.Forms
         {
             try
             {
-                btnDSGiaoDich.Enabled = true;
                 this.sP_DS_TAIKHOANTableAdapter.Connection.ConnectionString = Program.connectionstring;
                 this.sP_DS_TAIKHOANTableAdapter.Fill(this.cN_NGANHANG.SP_DS_TAIKHOAN);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                btnDSGiaoDich.Enabled = false;
-                return;
+                //return;
             }
             cbbChiNhanh.DataSource = Program.ChiNhanhbds;
             cbbChiNhanh.DisplayMember = "TENCN";
@@ -88,7 +83,7 @@ namespace NGANHANG.Forms
             tbMaNVGD.Text = Program.username;
             tbSoTaiKhoanGD.Text = tbSoTK.Text;
             tbMaNVGD.Enabled = dateGD.Enabled = false;
-            tbCMND.Enabled = gioiTinhNam.Enabled = gioiTinhNu.Enabled = tbHo.Enabled = tbTen.Enabled = tbSoTaiKhoanGD.Enabled = tbSoTK.Enabled = tbSoDu.Enabled = tbHo.Enabled = tbTen.Enabled = tbChiNhanhTaoKH.Enabled = tbChiNhanhTaoTK.Enabled = rtbDiaChi.Enabled = tbSDT.Enabled = false;
+            tbCMND.Enabled = gioiTinhNam.Enabled = gioiTinhNu.Enabled = tbHo.Enabled = tbTen.Enabled  = tbSoTK.Enabled = tbSoDu.Enabled = tbHo.Enabled = tbTen.Enabled = tbChiNhanhTaoKH.Enabled = tbChiNhanhTaoTK.Enabled = rtbDiaChi.Enabled = tbSDT.Enabled = false;
 
             //Nếu không có thông tin gì về giao dịch
             try
@@ -121,7 +116,19 @@ namespace NGANHANG.Forms
 
         private void btnGuiTien_Click(object sender, EventArgs e)
         {
-            if (tbSoTienGD.Text == "")
+            if (tbSoTaiKhoanGD.Text == "")
+            {
+                MessageBox.Show("Bạn chưa nhập tài khoản", "", MessageBoxButtons.OK);
+                tbSoTaiKhoanGD.Focus();
+                return;
+            }
+            else if (!kiemTraSo(tbSoTaiKhoanGD.Text.Trim()))
+            {
+                MessageBox.Show("Số tài khoản nhập vào không hợp lệ", "", MessageBoxButtons.OK);
+                tbSoTaiKhoanGD.Focus();
+                return;
+            }
+            else if (tbSoTienGD.Text == "")
             {
                 MessageBox.Show("Bạn chưa nhập số tiền nạp", "", MessageBoxButtons.OK);
                 tbSoTienGD.Focus();
@@ -142,14 +149,14 @@ namespace NGANHANG.Forms
             
             else
             {
-                Double soTienRut = Double.Parse(tbSoTienGD.Text);
-                Double soTienTK = Double.Parse(tbSoDu.Text);
-                if (((soTienTK - soTienRut) < 100000) && (cbbLoaiGD.SelectedIndex == 1))
-                {
-                    MessageBox.Show("Số dư còn lại phải tối thiểu là 100000 VND", "", MessageBoxButtons.OK);
-                    tbSoTienGD.Focus();
-                    return;
-                }
+                //Double soTienRut = Double.Parse(tbSoTienGD.Text);
+                //Double soTienTK = Double.Parse(tbSoDu.Text);
+                //if (((soTienTK - soTienRut) < 100000) && (cbbLoaiGD.SelectedIndex == 1))
+                //{
+                //    MessageBox.Show("Số dư còn lại phải tối thiểu là 100000 VND", "", MessageBoxButtons.OK);
+                //    tbSoTienGD.Focus();
+                //    return;
+                //}
                 Double soTienDG = Double.Parse(tbSoTienGD.Text);
                 
                 string loaigd = "RT";
@@ -158,7 +165,7 @@ namespace NGANHANG.Forms
                     loaigd = "GT";
                 }
                 string dateGR = DateTime.Now.ToString("yyyy-MM-dd h:mm:ss");
-                int a = KT_TaiKhoanKH.CapNhatSoDuTaiKhoan(tbSoTK.Text, loaigd, dateGR, soTienDG, Program.username);
+                int a = KT_TaiKhoanKH.CapNhatSoDuTaiKhoan(tbCMND.Text.Trim(),tbSoTaiKhoanGD.Text.Trim(), loaigd, dateGR, soTienDG, Program.username);
                 if (a == 1)
                 {
                     MessageBox.Show("Giao dịch thành công");
@@ -167,6 +174,10 @@ namespace NGANHANG.Forms
                 {
                     MessageBox.Show("Không tìm được số tài khoản");
                 }
+                else if (a == 3)
+                {
+                    MessageBox.Show("Bạn phải để tối thiểu số dư trong tài khoản lớn hơn 100000 VND");
+                }
                 else
                 {
                     MessageBox.Show("Giao dịch thất bại! Vui lòng kiểm tra lại");
@@ -174,13 +185,11 @@ namespace NGANHANG.Forms
 
                 try
                 {
-                    btnDSGiaoDich.Enabled = true;
                     this.sP_DS_TAIKHOANTableAdapter.Connection.ConnectionString = Program.connectionstring;
                     this.sP_DS_TAIKHOANTableAdapter.Fill(this.cN_NGANHANG.SP_DS_TAIKHOAN);
                 }
                 catch (System.Data.SqlClient.SqlException ex)
                 {
-                    btnDSGiaoDich.Enabled = false;
                     return;
                 }
 
@@ -189,12 +198,7 @@ namespace NGANHANG.Forms
             }
         }
 
-        private void btnDSGiaoDich_Click(object sender, EventArgs e)
-        {
-            DS_GiaoDich ds_GiaoDich_GuiTien = new DS_GiaoDich(((DataRowView)sP_DS_TAIKHOANBindingSource[0])["MACN_TAOTK"].ToString());
-            ds_GiaoDich_GuiTien.Owner = this;
-            ds_GiaoDich_GuiTien.Show();
-        }
+      
 
         private void sP_DS_TAIKHOANGridControl_Click(object sender, EventArgs e)
         {

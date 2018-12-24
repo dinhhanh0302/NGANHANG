@@ -246,12 +246,20 @@ namespace NGANHANG.Forms
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa thông tin khách hàng", "Confirmation", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                gridView2.DeleteSelectedRows();
-                khachHangBindingSource.EndEdit();
-                khachHangBindingSource.ResetCurrentItem();
-                this.khachHangTableAdapter.Connection.ConnectionString = Program.connectionstring;
-                this.khachHangTableAdapter.Update(this.cN_NGANHANG);
-                khachHangGridControl.Enabled = true;
+                if (KT_KhachHang.KiemTraXoaKhachHang(tbCMND.Text) == 0 )
+                {
+                    gridView2.DeleteSelectedRows();
+                    khachHangBindingSource.EndEdit();
+                    khachHangBindingSource.ResetCurrentItem();
+                    this.khachHangTableAdapter.Connection.ConnectionString = Program.connectionstring;
+                    this.khachHangTableAdapter.Update(this.cN_NGANHANG);
+                    khachHangGridControl.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Không thể xóa khách hàng vì khách hàng đã tồn tại tài khoản");
+                    return;
+                }
             }
         }
 

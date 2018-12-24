@@ -32,19 +32,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbChiNhanh = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbMaNV = new System.Windows.Forms.TextBox();
-            this.tbTaiKhoan = new System.Windows.Forms.TextBox();
-            this.tbMatKhau = new System.Windows.Forms.TextBox();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnTaoLogin = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkboxChiNhanh = new System.Windows.Forms.CheckBox();
+            this.cbNganHang = new System.Windows.Forms.CheckBox();
             this.tbRePass = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.cbNganHang = new System.Windows.Forms.CheckBox();
-            this.checkboxChiNhanh = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btnTaoLogin = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.tbMatKhau = new System.Windows.Forms.TextBox();
+            this.tbTaiKhoan = new System.Windows.Forms.TextBox();
+            this.tbMaNV = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -101,99 +101,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tạo tài khoản Login";
             // 
-            // label2
+            // label6
             // 
-            this.label2.Location = new System.Drawing.Point(120, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 21);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mã nhân viên:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(143, 119);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Tài khoản:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(145, 178);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Mật khẩu:";
-            // 
-            // tbMaNV
-            // 
-            this.tbMaNV.Location = new System.Drawing.Point(236, 50);
-            this.tbMaNV.Name = "tbMaNV";
-            this.tbMaNV.Size = new System.Drawing.Size(311, 21);
-            this.tbMaNV.TabIndex = 4;
-            // 
-            // tbTaiKhoan
-            // 
-            this.tbTaiKhoan.Location = new System.Drawing.Point(236, 116);
-            this.tbTaiKhoan.Name = "tbTaiKhoan";
-            this.tbTaiKhoan.Size = new System.Drawing.Size(311, 21);
-            this.tbTaiKhoan.TabIndex = 5;
-            // 
-            // tbMatKhau
-            // 
-            this.tbMatKhau.Location = new System.Drawing.Point(236, 175);
-            this.tbMatKhau.Name = "tbMatKhau";
-            this.tbMatKhau.Size = new System.Drawing.Size(311, 21);
-            this.tbMatKhau.TabIndex = 6;
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Location = new System.Drawing.Point(217, 346);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(93, 29);
-            this.btnHuy.TabIndex = 7;
-            this.btnHuy.Text = "Hủy";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
-            // btnTaoLogin
-            // 
-            this.btnTaoLogin.Location = new System.Drawing.Point(427, 346);
-            this.btnTaoLogin.Name = "btnTaoLogin";
-            this.btnTaoLogin.Size = new System.Drawing.Size(101, 29);
-            this.btnTaoLogin.TabIndex = 8;
-            this.btnTaoLogin.Text = "Tạo tài khoản";
-            this.btnTaoLogin.UseVisualStyleBackColor = true;
-            this.btnTaoLogin.Click += new System.EventHandler(this.btnTaoLogin_Click);
-            // 
-            // tbRePass
-            // 
-            this.tbRePass.Location = new System.Drawing.Point(236, 234);
-            this.tbRePass.Name = "tbRePass";
-            this.tbRePass.Size = new System.Drawing.Size(311, 21);
-            this.tbRePass.TabIndex = 10;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(104, 237);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Nhập lại mật khẩu:";
-            // 
-            // cbNganHang
-            // 
-            this.cbNganHang.AutoSize = true;
-            this.cbNganHang.Location = new System.Drawing.Point(254, 290);
-            this.cbNganHang.Name = "cbNganHang";
-            this.cbNganHang.Size = new System.Drawing.Size(78, 17);
-            this.cbNganHang.TabIndex = 11;
-            this.cbNganHang.Text = "Ngân hàng";
-            this.cbNganHang.UseVisualStyleBackColor = true;
-            this.cbNganHang.CheckedChanged += new System.EventHandler(this.cbNganHang_CheckedChanged);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(157, 290);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Quyền:";
             // 
             // checkboxChiNhanh
             // 
@@ -206,14 +121,101 @@
             this.checkboxChiNhanh.UseVisualStyleBackColor = true;
             this.checkboxChiNhanh.CheckedChanged += new System.EventHandler(this.checkboxChiNhanh_CheckedChanged);
             // 
-            // label6
+            // cbNganHang
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(157, 290);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(43, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Quyền:";
+            this.cbNganHang.AutoSize = true;
+            this.cbNganHang.Location = new System.Drawing.Point(254, 290);
+            this.cbNganHang.Name = "cbNganHang";
+            this.cbNganHang.Size = new System.Drawing.Size(78, 17);
+            this.cbNganHang.TabIndex = 11;
+            this.cbNganHang.Text = "Ngân hàng";
+            this.cbNganHang.UseVisualStyleBackColor = true;
+            this.cbNganHang.CheckedChanged += new System.EventHandler(this.cbNganHang_CheckedChanged);
+            // 
+            // tbRePass
+            // 
+            this.tbRePass.Location = new System.Drawing.Point(236, 234);
+            this.tbRePass.Name = "tbRePass";
+            this.tbRePass.Size = new System.Drawing.Size(311, 21);
+            this.tbRePass.TabIndex = 10;
+            this.tbRePass.UseSystemPasswordChar = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(104, 237);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Nhập lại mật khẩu:";
+            // 
+            // btnTaoLogin
+            // 
+            this.btnTaoLogin.Location = new System.Drawing.Point(427, 346);
+            this.btnTaoLogin.Name = "btnTaoLogin";
+            this.btnTaoLogin.Size = new System.Drawing.Size(101, 29);
+            this.btnTaoLogin.TabIndex = 8;
+            this.btnTaoLogin.Text = "Tạo tài khoản";
+            this.btnTaoLogin.UseVisualStyleBackColor = true;
+            this.btnTaoLogin.Click += new System.EventHandler(this.btnTaoLogin_Click);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.Location = new System.Drawing.Point(217, 346);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(93, 29);
+            this.btnHuy.TabIndex = 7;
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // tbMatKhau
+            // 
+            this.tbMatKhau.Location = new System.Drawing.Point(236, 175);
+            this.tbMatKhau.Name = "tbMatKhau";
+            this.tbMatKhau.Size = new System.Drawing.Size(311, 21);
+            this.tbMatKhau.TabIndex = 6;
+            this.tbMatKhau.UseSystemPasswordChar = true;
+            // 
+            // tbTaiKhoan
+            // 
+            this.tbTaiKhoan.Location = new System.Drawing.Point(236, 116);
+            this.tbTaiKhoan.Name = "tbTaiKhoan";
+            this.tbTaiKhoan.Size = new System.Drawing.Size(311, 21);
+            this.tbTaiKhoan.TabIndex = 5;
+            // 
+            // tbMaNV
+            // 
+            this.tbMaNV.Location = new System.Drawing.Point(236, 50);
+            this.tbMaNV.Name = "tbMaNV";
+            this.tbMaNV.Size = new System.Drawing.Size(311, 21);
+            this.tbMaNV.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(145, 178);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Mật khẩu:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(143, 119);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Tài khoản:";
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(120, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 21);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Mã nhân viên:";
             // 
             // TaoLogin
             // 
